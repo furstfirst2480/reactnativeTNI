@@ -10,22 +10,24 @@ import AppFooter from "./component/AppFooter";
 import AppHeader from "./component/AppHeader";
 export default function App():React.JSX.Element {
   const onClickMe = ()=>{
-    Alert.alert("Hi","hello React.jf");
+    Alert.alert("Hello","Input your full name");
   }
   const users =[
     {id:1001,name:'John'},
     {id:1002,name:'Mary'}
   ]
   return (
+    
     <View style={styles.container}>
-      <AppHeader title="this is Header " year={2018}></AppHeader>
-      <AppHeader title="this is Header"></AppHeader>
-      <Text>Hello React Native!</Text>
+     <View style={styles.headerStyle}>
+      <AppHeader  title="Header"></AppHeader>
+      </View>
+      <Text>Message from App.tsx</Text>
       {
         users.map((data,index)=>{
         return(
-          <Text key={data.id}>
-            No. {index+1}  ID: {data.id} Name:{data.name}
+          <Text >
+           test
           </Text>
         )
         })}
@@ -34,17 +36,39 @@ export default function App():React.JSX.Element {
       color="blue"
       // onPress={()=>{Alert.alert('Hi','React Native is Fun!!')}}
       />
-      <AppFooter></AppFooter>
+      <View style={styles.footerStyle}>
+      <AppFooter ></AppFooter>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    width: "auto",
+    height: "auto",
+    backgroundColor: "yellow",
     alignItems: "center",
     justifyContent: "center",
   },
+  headerStyle:{
+    flex: 1,
+    width: "auto",
+    height: "auto",
+    backgroundColor: "blue",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+  },
+  footerStyle:{
+    flex: 1,
+    width: "auto",
+    height: "auto",
+    backgroundColor: "blue",
+    alignItems: "flex-start",
+    justifyContent: "center",
+  }
+  
 });

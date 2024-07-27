@@ -2,22 +2,16 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const AppFooter = ():React.JSX.Element => {
-    const hello = "Hello TNI Footer"
+    const hello = "Thai nichi Institute of Technology"
     const hello2 = <Text>Hello JSX</Text>;
     const isLogin = true;
     
     return (
     <View>
      <Text style={styles.myText}>
-      {hello} Date:{new Date().toLocaleDateString()}
+      Thai-Nichi Institute of Technology
      </Text>
-     {hello2}
-     {isLogin && <Text>Welcome Boss</Text>} 
-     {
-      isLogin==true 
-      ? <Text>Welcome Marry</Text>
-      : <Text>ยังไม่ได้ Login</Text>
-     }   
+   
     </View>
   )
 }
@@ -25,7 +19,9 @@ const AppFooter = ():React.JSX.Element => {
 export default AppFooter
 
 const styles = StyleSheet.create({
+  
   myText:{
-      color:'red'
+      color:'red',
+     
   }
 })
