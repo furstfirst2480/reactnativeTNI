@@ -28,5 +28,9 @@ export default StyleSheet.create({
       fontSize:20,
       textAlign: "right",
       
+    },
+    button:{
+        marginTop:50,
+        color:'white'
     }
   });
