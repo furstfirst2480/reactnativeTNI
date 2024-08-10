@@ -1,19 +1,25 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { stylePractice } from '../styles/styles';
+import {  View,TextInput, Button } from 'react-native'
+import React from 'react'
+import { stylesLogin } from '../styles/styles' // เรียกใช้สไตล์จากไฟล์ styles.ts
 
-interface ContentProps {
-  message: string;
-  onButtonClick: () => void;
+const Login = () => {
+  return (
+    <View style={stylesLogin.container}>
+      <TextInput
+        style={stylesLogin.input}
+        placeholder="Enter Name"      
+      />
+      <TextInput
+        style={stylesLogin.input}
+        placeholder="Enter Email"       
+        keyboardType="email-address"
+      />
+      <View >
+        <Button title="SUBMIT" />
+      </View>
+    </View>
+
+  )
 }
 
-const Login = ({ message, onButtonClick }: ContentProps): React.JSX.Element => {
-  return (
-    <View style={stylePractice.content}>
-      <Text style={stylePractice.text}>{message}</Text>
-      <Button title="Click Me" onPress={onButtonClick} />
-    </View>
-  );
-};
-
-export default Login;
+export default Login

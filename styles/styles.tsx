@@ -1,116 +1,116 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-const stylist = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    padding: 20,
-    borderColor: "#f5f5f5", //ตั้งค่าสีพื้นหลังเป็นสีเทาอ่อน
-   
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#ffffff'
   },
-  profileImage: {
-    borderRadius: 50,
-    width: 100,
-    height: 100,
-    marginRight: 20,
+  header: {
+    padding: 16,
+    backgroundColor: '#f8f8f8',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd'
   },
-  boxcontainer:{
-    flexDirection: "column", // Change this line
+  fullname: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 4
+  },
+  message: {
+    fontSize: 16,
+    color: '#666'
+  },
+  content: {
+    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f9f9f9',
+    borderRadius: 8,
+    marginVertical: 16,
+    width: '90%'
+  },
+  text: {
+    fontSize: 16,
+    marginBottom: 8,
+    color: '#444'
+  },
+  footer: {
+    padding: 16,
+    backgroundColor: '#f8f8f8',
+    width: '100%',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0,
+    borderTopWidth: 1,
+    borderTopColor: '#ddd'
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginTop: 16,
+    paddingHorizontal: 8,
+    width: '80%',
+    borderRadius: 8
+  }
+});
+
+const stylesProfile = StyleSheet.create({
+  container: {
+    justifyContent: "flex-start", // จัดให้องค์ประกอบภายในอยู่ต้นแนวตั้ง
+    alignItems: "center", // จัดให้องค์ประกอบภายในอยู่ตรงกลางแนวนอน
+    padding: 20, // เพิ่ม padding รอบ ๆ คอนเทนเนอร์ 20 หน่วย
+    backgroundColor: "white", // ตั้งค่าสีพื้นหลังเป็นสีเทาอ่อน
   },
   profileContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    padding: 20,
-    borderRadius: 10,
+    flexDirection: "row", // จัดให้องค์ประกอบภายในเรียงตามแนวนอน
+    alignItems: "center", // จัดให้อยู่ตรงกลางในแนวขวาง (แนวตั้ง)
+    width: "100%", // ใช้ความกว้างเต็มหน้าจอ
+    padding: 20, // เพิ่ม padding ภายในคอนเทนเนอร์ 20 หน่วย
     backgroundColor: "white",
-    elevation: 5,
-    marginTop: 50,
+    borderRadius: 10, // ทำให้ขอบของคอนเทนเนอร์มีมุมมน 10 หน่วย
+    elevation: 5, // เพิ่มเงาให้กับคอนเทนเนอร์ (เฉพาะ Android)
+    marginTop: 50, // เพิ่มระยะห่างจากด้านบน 50 หน่วย
+  },
+  profileImage: {
+    width: 100, // กำหนดความกว้างของรูปภาพเป็น 100 หน่วย
+    height: 100, // กำหนดความสูงของรูปภาพเป็น 100 หน่วย
+    borderRadius: 50, // ทำให้รูปภาพเป็นวงกลม (ครึ่งหนึ่งของความกว้างและความสูง)
+    marginRight: 20, // เพิ่มระยะห่างทางขวาของรูปภาพ 20 หน่วย
   },
   profileName: {
     fontSize: 20,
     fontWeight: "bold",
     color: "#00008b",
   },
-  button: {
-    marginTop: 50,
-    color: "white",
-  },
-  box:{
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginTop: 16,
-    paddingHorizontal: 8,
-    width: "80%",
-    borderRadius: 8,
-
-  }
 });
 
-const stylePractice = StyleSheet.create({
+const stylesLogin = StyleSheet.create({
   container: {
-    // flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 16,
-    backgroundColor: "#ffffff",
-    marginTop: 100,
-    flex: 1,
-   
-  },
-  header: {
-    backgroundColor: "#AEC6CF",
+    justifyContent: "center",
     padding: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 100,
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#fff",
-  },
-  subtitleText: {
-    fontSize: 16,
-    color: "#fff",
-  },
-  footer: {
-    backgroundColor: "#f8f8f8",
-    padding: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    marginTop:100,
-  },
-  footerText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
-  },
-  content: {
-    //   flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 18,
-    marginBottom: 20,
+    marginTop: 50,
+    backgroundColor: '#ffffff', // ตั้งค่าสีพื้นหลังเป็นสีขาว
+    borderRadius: 10, // เพิ่มความมนให้กับขอบคอนเทนเนอร์
+    elevation: 3, // เพิ่มเงาให้กับคอนเทนเนอร์ (เฉพาะ Android)
+    width: '100%', // ตั้งความกว้างของ container ให้เต็มหน้าจอ
   },
   input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginTop: 16,
-    paddingHorizontal: 8,
-    width: "80%",
-    borderRadius: 8,
-
-    marginBottom:500,
-  },
-  
+    height: 45, // เพิ่มความสูงของ TextInput
+    borderColor: "#cccccc", // เปลี่ยนสีขอบเป็นสีเทาอ่อน
+    borderWidth: 1, 
+    borderRadius: 8, // เพิ่มความมนให้กับขอบ TextInput
+    marginBottom: 15, // เพิ่มระยะห่างด้านล่างระหว่าง TextInput
+    paddingHorizontal: 15, // เพิ่มระยะห่างภายใน TextInput
+    backgroundColor: "#f9f9f9", // ตั้งค่าสีพื้นหลังของ TextInput
+  }, 
 });
 
-export { stylist, stylePractice };
+export { styles, stylesProfile, stylesLogin };
