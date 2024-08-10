@@ -1,27 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text } from 'react-native';
+import { stylePractice } from '../styles/styles';
 
-const AppFooter = ():React.JSX.Element => {
-    const hello = "Thai nichi Institute of Technology"
-    const hello2 = <Text>Hello JSX</Text>;
-    const isLogin = true;
-    
-    return (
-    <View>
-     <Text style={styles.myText}>
-      Thai-Nichi Institute of Technology
-     </Text>
-   
-    </View>
-  )
+interface AppFooterProps {
+  footerText: string;
+  footerMessage?: string; // Optional if not used
 }
 
-export default AppFooter
+const AppFooter: React.FC<AppFooterProps> = ({ footerText }) => {
+  return (
+    <View style={stylePractice.footer}>
+      <Text style={stylePractice.footerText}>{footerText}</Text>
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({
-  
-  myText:{
-      color:'red',
-     
-  }
-})
+export default AppFooter;

@@ -1,25 +1,40 @@
-import { Button , Text, View ,Image} from 'react-native'
+import { Button , Text, View ,Image } from 'react-native'
 import React, { useState } from 'react'
-import styles from '../styles/styles';
+import { stylist } from '../styles/styles';
 
 const ProfileScreen = (): React.JSX.Element => {
-  const [imageprofile,setImageprofile] = useState(require('../assets/profileimage.jpg'));
-  const [name,setName] = useState("Supakrit Methawanichkul")
+
+  const originalImage = require('../assets/profileimage.jpg');
+  const newImage = require('../assets/newprofileimage.jpg');
+  
+  const originalName = 'Supakrit Methawanichkul';
+  const newName ='New Name';
+
+  const [imageprofile,setImageprofile] = useState(originalImage);
+  const [name,setName] = useState(originalName);
+ 
   const handleChangeName = ()=>{
-    setName('New Name');
-  }
-  const handleChangePic = ()=>{
-    setImageprofile(require('../assets/newprofileimage.jpg'));
-  }
+    setName((prevName) =>
+      prevName === originalName ? newName : originalName
+  );
+  };
+  const handleChangePic = () => {
+  
+    setImageprofile((prevImage) =>
+      prevImage === originalImage ? newImage : originalImage
+    );
+  };
+
+ 
   return (
-    <View style={styles.container}>
-      <View style={styles.profileContainer} >
-        <Image source= {imageprofile} style={styles.profileImage} />
+    <View style={stylist.container}>
+      <View style={stylist.profileContainer} >
+        <Image source= {imageprofile} style={stylist.profileImage} />
         <View>
-        <Text style={styles.profileName}>{name}</Text>
+        <Text style={stylist.profileName}>{name}</Text>
         <View >
         <Button title='Change Name' onPress={handleChangeName}/>
-        <Text style={styles.button} >t</Text>
+        <Text style={stylist.button} >t</Text>
         <Button title='Change Picture' onPress={handleChangePic}/>
         </View>
         </View>

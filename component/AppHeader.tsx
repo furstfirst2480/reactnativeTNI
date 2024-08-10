@@ -1,16 +1,20 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-type AppHeaderProps = {
-  title:string;
-  year?:number;
-}
-const AppHeader =  ({title,year}:AppHeaderProps):React.JSX.Element => {
-  return (
-    <View>
-      <Text>{title}
-        {year && year + 543}</Text>
-    </View>
-  )
+import React from "react";
+import { View, Text } from "react-native";
+import { stylePractice } from "../styles/styles";
+
+interface AppHeaderProps {
+  title: string;
+  subtitle: string;
 }
 
-export default AppHeader
+const AppHeader: React.FC<AppHeaderProps> = ({ title, subtitle }) => {
+  return (
+    <View style={stylePractice.header}>
+      <Text style={stylePractice.subtitleText}>{subtitle}</Text>
+      <Text style={stylePractice.headerText}>{title}</Text>
+      
+    </View>
+  );
+};
+
+export default AppHeader;
