@@ -5,13 +5,22 @@ import { stylesLogin } from "./styles/styles";
 import FlatListExample from "./component/FlatListExample";
 import FlatListCallBackend from "./component/FlatListCallBackend";
 import NewsApp from "./component/NewsApp";
+import AxiosgetData from "./component/AxiosgetData";
+import AxiosPostData from "./component/AxiosPostData";
+import WeatherLondon from "./component/WeatherLondon";
+import WeatherBangkok from "./component/WeatherBangkok";
+
 export default function App(): React.JSX.Element {
   return (
     <View>
       {/* <ProfileScreen /> */}
       {/* <FlatListExample/> */}
       {/* <FlatListCallBackend/> */}
-      <NewsApp/>
+      {/* <NewsApp/> */}
+      {/* <AxiosgetData/> */}
+      {/* <AxiosPostData/> */}
+      {/* <WeatherLondon/> */}
+      <WeatherBangkok/>
     </View>
   );
 }
