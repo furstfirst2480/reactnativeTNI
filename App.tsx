@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import { View, TextInput, Button } from "react-native";
-import ProfileScreen from "./component/ProfileScreen";
-import { stylesLogin } from "./styles/styles";
-import FlatListExample from "./component/FlatListExample";
-import FlatListCallBackend from "./component/FlatListCallBackend";
-import NewsApp from "./component/NewsApp";
-import AxiosgetData from "./component/AxiosgetData";
-import AxiosPostData from "./component/AxiosPostData";
-import WeatherLondon from "./component/WeatherLondon";
-import WeatherBangkok from "./component/WeatherBangkok";
-import ModalExample from "./component/modalExample";
-import WeatherApp from "./component/WeatherApp";
-export default function App(): React.JSX.Element {
+import {View, Text} from 'react-native'
+import HomeScreen from "./screens/HomeScreen";
+import AboutScreen from "./screens/AboutScreen";
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native'
+import CreatePostScreen from "./screens/CreatePostScreen";
+
+const App=(): React.JSX.Element => {
+  const HomeStack = createNativeStackNavigator();
   return (
-    <View>
-      {/* <ProfileScreen /> */}
-      {/* <FlatListExample/> */}
-      {/* <FlatListCallBackend/> */}
-      {/* <NewsApp/> */}
-      {/* <AxiosgetData/> */}
-      {/* <AxiosPostData/> */}
-      {/* <WeatherLondon/> */}
-      {/* <WeatherBangkok/> */}
-      <WeatherApp/>
-    </View>
+    <NavigationContainer>
+      <HomeStack.Navigator>
+        <HomeStack.Screen name='Home' component={HomeScreen}/>
+        <HomeStack.Screen name='About' component={AboutScreen}/>
+        <HomeStack.Screen name='CreatePost' component={CreatePostScreen}/>
+      </HomeStack.Navigator>
+    </NavigationContainer>
   );
 }
+export default App;

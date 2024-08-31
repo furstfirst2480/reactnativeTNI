@@ -18,7 +18,7 @@ const ModalExample = ():React.JSX.Element => {
        onRequestClose={() => setModalVisible(!modalVisible)}
        >
         <View style={styles.modalView}>
-        {renderWeatherComponent()}
+
         <Text style={styles.modalText}>Hello React Native</Text>
         
         <Pressable
