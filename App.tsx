@@ -10,6 +10,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import MenuScreen from "./screens/MenuScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ProductScreen from "./screens/ProductScreen";
+import DetailScreen from "./screens/DetailScreen";
 const HomeStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const ProductStack = createNativeStackNavigator();
@@ -59,12 +60,9 @@ const App = (): React.JSX.Element => {
           // headerTitleAlign: "center",
         }}
       >
-        <ProductStack.Screen
-          name="Products"
-          component={ProductScreen}
-        
-        />
-        
+        <ProductStack.Screen name="Products" component={ProductScreen} />
+        <ProductStack.Screen name="Details" component={DetailScreen} />
+      
       </ProductStack.Navigator>
     );
   }
