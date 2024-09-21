@@ -25,7 +25,7 @@ const DetailScreen = (): React.JSX.Element => {
   const getProductbyId = async () => {
     try {
       setLoading(true);
-      const response = await findProductbyId(route.params.id);
+      const response = await findProductbyId(route.params.productId);
       setDetail(response.data.data);
     } catch (error: any) {
       console.log(error.message);
