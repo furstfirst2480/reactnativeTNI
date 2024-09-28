@@ -1,38 +1,102 @@
-import React, { useState } from "react";
-import { HeaderButtonsProvider } from "react-navigation-header-buttons";
-import { View, Text, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
+
 import HomeScreen from "./screens/HomeScreen";
 import AboutScreen from "./screens/AboutScreen";
+import ProductScreen from "./screens/ProductScreen";
+import MenuScreen from "./screens/MenuScreen";
+import DetailScreen from "./screens/DetailScreen";
+
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useFocusEffect } from "@react-navigation/native";
-import CreatePostScreen from "./screens/CreatePostScreen";
+import { HeaderButtonsProvider } from "react-navigation-header-buttons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import MenuScreen from "./screens/MenuScreen";
+
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import ProductScreen from "./screens/ProductScreen";
-import DetailScreen from "./screens/DetailScreen";
 import LoginScreen from "./screens/LoginScreen";
 import Toast from "react-native-toast-message";
+
 import { Provider } from "react-redux";
 import { store } from "./redux-toolkit/store";
 import { useAppSelector, useAppDispatch } from "./redux-toolkit/hook";
 import {
   selectAuthState,
-  setIsLogin,
   setIsLoading,
+  setIsLogin,
   setProfile,
 } from "./auth/auth-slice";
 import { getProfile } from "./services/auth-service";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+import { ActivityIndicator, View } from "react-native";
+import { blue } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CameraScreen from "./screens/CameraScreen";
 
 const HomeStack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
 const ProductStack = createNativeStackNavigator();
 const LoginStack = createNativeStackNavigator();
+const CameraStack = createNativeStackNavigator();
 
+const Drawer = createDrawerNavigator();
+
+const Tab = createBottomTabNavigator();
+
+function TabContainer() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName="";
+          if (route.name === "HomeStack") {
+            iconName = focused
+              ? "home"
+              : "home-outline";
+          } else if (route.name === "CameraStack") {
+            iconName = focused ? "camera" : "camera-outline";
+          }
+          // You can return any component that you like here!​
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+        headerShown:false,
+        tabBarActiveBackgroundColor:"lightpink",
+      })}
+      //screenOptions={{ headerShown: false }}
+    >
+   
+      <Tab.Screen
+        name="HomeStack"
+        component={HomeScreen}
+        options={{ tabBarLabel: "Home" }}
+      />
+           
+      <Tab.Screen
+        name="CameraStack"
+        component={CameraStackScreen}
+        options={{ tabBarLabel: "Camera" }}
+      />
+    </Tab.Navigator>
+  );
+}
+function CameraStackScreen() {
+  return (
+    <CameraStack.Navigator
+      initialRouteName="Products"
+      screenOptions={{
+        headerTitleStyle: { fontWeight: "bold" },
+      }}
+    >
+      <CameraStack.Screen name="Camera" component={CameraScreen} />
+    </CameraStack.Navigator>
+  );
+}
 const App = (): React.JSX.Element => {
-  // ใช้ useAppSelector
+  //ใช้ useAppSelector เพื่อดึง state จาก store
   const { isLogin, isLoading } = useAppSelector(selectAuthState);
   const dispatch = useAppDispatch();
+
   const checkLogin = async () => {
     try {
       dispatch(setIsLoading(true));
@@ -54,56 +118,70 @@ const App = (): React.JSX.Element => {
       checkLogin();
     }, [])
   );
-  if (isLoading) {
 
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-             <ActivityIndicator size="large" color="blue" />     {" "}
-      </View>
-    
+  if (isLoading) {
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <ActivityIndicator size="large" color="blue" />
+    </View>;
+  }
+
+  function CameraStackScreen() {
+    return (
+      <CameraStack.Navigator //Global​
+        initialRouteName="Products"
+        screenOptions={{
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
+        <CameraStack.Screen
+          name="Camera"
+          component={CameraScreen}
+          options={{ title: "Camera" }}
+        />
+      </CameraStack.Navigator>
+    );
   }
 
   function HomeStackScreen() {
     return (
       <HomeStack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Products"
         screenOptions={{
-          //Global
-          // headerStyle: { backgroundColor: "#20b2aa" },
+          // headerStyle: { backgroundColor: "#ffde59"},
           // headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          // headerTitleAlign: "center",
         }}
       >
         <HomeStack.Screen
           name="Home"
           component={HomeScreen}
-          // options={{ title: "หน้าหลัก" }}
+          // options={{title: 'หน้าหลัก'}}
         />
         <HomeStack.Screen
           name="About"
           component={AboutScreen}
-          options={{
-            title: "เกี่ยวกับเรา",
-            headerStyle: { backgroundColor: "#20b2aa" },
-            headerTintColor: "white",
-            // headerTitleStyle:{fontWeight:'bold'},
-            headerTitleAlign: "center",
-          }}
+          /* options={{title: 'เกี่ยวกับเรา',
+          headerStyle:{backgroundColor: '#20b2aa'},
+          headerTintColor: 'white',
+          headerTitleStyle:{fontWeight: 'bold'},
+          headerTitleAlign: 'center'
+          }} */
         />
-        {/* <HomeStack.Screen name="CreatePost" component={CreatePostScreen} /> */}
+        {/* <HomeStack.Screen name = 'CreatePost' component={CreatePostScreen}/> */}
       </HomeStack.Navigator>
     );
   }
+
   function ProductStackScreen() {
     return (
       <ProductStack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          //Global
-          // headerStyle: { backgroundColor: "#20b2aa" },
+          // headerStyle: { backgroundColor: "#ffde59"},
           // headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          // headerTitleAlign: "center",
         }}
       >
         <ProductStack.Screen name="Products" component={ProductScreen} />
@@ -111,6 +189,7 @@ const App = (): React.JSX.Element => {
       </ProductStack.Navigator>
     );
   }
+
   function LoginStackScreen() {
     return (
       <LoginStack.Navigator
@@ -123,6 +202,7 @@ const App = (): React.JSX.Element => {
       </LoginStack.Navigator>
     );
   }
+
   return (
     <>
       <HeaderButtonsProvider stackType="native">
@@ -131,18 +211,18 @@ const App = (): React.JSX.Element => {
             screenOptions={{ headerShown: false }}
             drawerContent={(props) => <MenuScreen {...props} />}
           >
-            <Drawer.Screen name="HomeStack" component={HomeStackScreen} />
+            <Drawer.Screen name="Home" component={TabContainer} />
             <Drawer.Screen name="ProductStack" component={ProductStackScreen} />
           </Drawer.Navigator>
         ) : (
           <LoginStackScreen />
         )}
       </HeaderButtonsProvider>
-
       <Toast />
     </>
   );
 };
+
 const AppWrapper = () => {
   return (
     <Provider store={store}>
@@ -154,4 +234,5 @@ const AppWrapper = () => {
     </Provider>
   );
 };
+
 export default AppWrapper;
