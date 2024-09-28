@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View,Alert } from "react-native";
+import { Button, StyleSheet, View ,} from "react-native";
 import React, {useLayoutEffect} from "react";
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {useNavigation} from '@react-navigation/native'
@@ -9,6 +9,10 @@ import {
     Item
 } from 'react-navigation-header-buttons';
 import 'react-native-gesture-handler';
+import { useAppDispatch, useAppSelector } from "../redux-toolkit/hook";
+import { selectAuthState, setIsLogin } from "../auth/auth-slice";
+import { logout } from "../services/auth-service";
+import {Text} from '@rneui/base'; // use Text component from react native base
 
 const MaterialHeaderButton = (props: any) => (
     // the `props` here come from <Item ... />
@@ -18,6 +22,8 @@ const MaterialHeaderButton = (props: any) => (
     
 const HomeScreen = (): React.JSX.Element => {
     const navigation = useNavigation<any>();
+    const dispatch = useAppDispatch();
+    const {profile} = useAppSelector(selectAuthState);
     useLayoutEffect(() => {
       navigation.setOptions({
         title: 'หน้าหลัก',
@@ -35,8 +41,9 @@ const HomeScreen = (): React.JSX.Element => {
         headerRight: () => (
           <HeaderButtons HeaderButtonComponent={MaterialHeaderButton}>
             <Item title="logout" iconName="logout"
-            onPress={()=>{
-              Alert.alert("Log out","Close Menu")
+            onPress={async()=>{
+              await logout();
+              dispatch(setIsLogin(false));
             }}
             />
           </HeaderButtons>
@@ -56,7 +63,16 @@ const HomeScreen = (): React.JSX.Element => {
   return (
     <View style={styles.container}>
       <MaterialIcon name="home" size={40} color='pink'/>
-      <Text>HomeScreen</Text>
+      {profile?(
+        <>
+        <Text h3>Welcome {profile.name}</Text>
+        <Text>
+          Email: {profile.email} ID: {profile.id} Role:{profile.role}
+        </Text>
+        </>
+      ) :null
+
+      }
       <Button title="About us" onPress={gotoAbout} />
     </View>
   );
